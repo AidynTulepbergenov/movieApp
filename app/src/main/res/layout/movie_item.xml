@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.mynavigation.model.data.Movie" />
+
+        <variable
+            name="recyclerViewItemClick"
+            type="com.example.mynavigation.view.adapters.MovieAdapter.RecyclerViewItemClick" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> recyclerViewItemClick.itemClick(data)}"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/orange">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{data.title}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_toEndOf="@id/tv_poster"
+                tools:text="tv_title" />
+
+            <TextView
+                android:id="@+id/tv_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{data.overview}"
+                android:layout_toEndOf="@id/tv_poster"
+                android:layout_below="@id/tv_title"
+                android:maxLines="7"
+                android:ellipsize="end"
+                tools:text="tv_user_id" />
+
+            <ImageView
+                android:id="@+id/tv_poster"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                app:bindIconUrl="@{data.poster}"
+                 />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:layout_below="@id/tv_poster"
+                 />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

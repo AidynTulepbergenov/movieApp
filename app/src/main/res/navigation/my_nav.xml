@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/movieCatalogFragment">
+
+    <fragment
+        android:id="@+id/movieCatalogFragment"
+        android:name="com.example.mynavigation.view.fragments.MovieCatalogFragment"
+        android:label="@string/movie_catalog"
+        tools:layout="@layout/fragment_movie_catalog" >
+        <action
+            android:id="@+id/action_movieCatalogFragment_to_movieDetail"
+            app:destination="@id/movieDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.example.mynavigation.view.fragments.FavouritesFragment"
+        android:label="@string/favourites"
+        tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.mynavigation.view.fragments.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/movieDetail"
+        android:name="com.example.mynavigation.view.fragments.MovieDetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_movie_detail" >
+        <argument
+            android:name="movie_id"
+            app:argType="integer" />
+    </fragment>
+</navigation>
