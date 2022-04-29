@@ -44,6 +44,6 @@ class MovieDetailFragment : Fragment() {
             Glide.with(requireContext()).load(IMAGE_BASE + it.poster)
                 .into(binding.tvDetailPoster)
         }
-    }
 
+    }
 }

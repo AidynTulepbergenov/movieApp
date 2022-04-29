@@ -59,8 +59,14 @@ class MovieCatalogFragment : Fragment(){
         viewModel.openDetail.observe(
             viewLifecycleOwner
         ){
-            val action = MovieCatalogFragmentDirections.actionMovieCatalogFragmentToMovieDetail(it)
-            Navigation.findNavController(binding.root).navigate(action)
+            val action = it.getContentIfNotHandled()?.let { it1 -> Int
+                MovieCatalogFragmentDirections.actionMovieCatalogFragmentToMovieDetail(
+                    movieId = it1
+                )
+            }
+            if (action != null) {
+                Navigation.findNavController(binding.root).navigate(action)
+            }
         }
     }
 

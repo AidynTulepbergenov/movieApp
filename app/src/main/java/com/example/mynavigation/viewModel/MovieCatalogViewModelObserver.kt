@@ -2,6 +2,7 @@ package com.example.mynavigation.viewModel
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
+import com.example.mynavigation.model.data.Event
 import com.example.mynavigation.model.data.Movie
 
 class MovieCatalogViewModelObserver (
@@ -9,7 +10,7 @@ class MovieCatalogViewModelObserver (
     private val viewModel: MovieCatalogViewModel,
     private val viewLifecycleOwner: LifecycleOwner,
 
-    private val openDetail: ((movieId: Int) -> Unit),
+    private val openDetail: ((movieId: Event<Int>) -> Unit),
     private val liveData: ((state: MovieCatalogViewModel.State) -> Unit)
     ) {
 

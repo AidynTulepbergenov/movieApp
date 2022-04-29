@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mynavigation.model.data.Event
 import com.example.mynavigation.model.data.Movie
 import com.example.mynavigation.model.data.MovieDao
 import com.example.mynavigation.model.data.MovieDatabase
@@ -20,8 +21,8 @@ class MovieCatalogViewModel(context: Context): ViewModel(), CoroutineScope {
     val movieList: LiveData<State>
         get() = _movieList
 
-    private val _openDetail = MutableLiveData<Int>()
-    val openDetail: LiveData<Int>
+    private val _openDetail = MutableLiveData<Event<Int>>()
+    val openDetail: LiveData<Event<Int>>
         get() = _openDetail
 
     private var movieDao: MovieDao = MovieDatabase.getDatabase(context).getDao()
@@ -55,7 +56,7 @@ class MovieCatalogViewModel(context: Context): ViewModel(), CoroutineScope {
     val recyclerViewItemClickListener = object: MovieAdapter.RecyclerViewItemClick {
         override fun itemClick(item: Movie) {
             item.post_id?.let {
-                _openDetail.value = it
+                _openDetail.value = Event(it)
             }
         }
     }
