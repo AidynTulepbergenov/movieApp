@@ -35,7 +35,7 @@ class MovieDetailViewModel(context: Context): ViewModel(), CoroutineScope {
             val movie = withContext(Dispatchers.IO) {
                 try {
                     val response =
-                        RetrofitService.getMovieApi().getMovieByIdC(id)
+                        RetrofitService.getMovieApi().getMovieByIdC(id, apiKey = "")
                     if (response.isSuccessful) {
                         response.body()!!
                     } else {

@@ -3,32 +3,39 @@ package com.example.mynavigation.model.network
 import com.example.mynavigation.model.MovieResponse
 import com.example.mynavigation.model.data.Movie
 import retrofit2.Response
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface MovieApi {
-    @GET("movie/popular?api_key=a8800d6d40188783fd088998d7926c03")
-    suspend fun getMovieListCoroutine(): Response<MovieResponse>
+    companion object {
+        private var SESSION_ID = ""
+        private var API_KEY = "a8800d6d40188783fd088998d7926c03"
+    }
 
-    @GET("movie/{id}?api_key=a8800d6d40188783fd088998d7926c03")
-    suspend fun getMovieByIdC(@Path("id") id: Int): Response<Movie>
+    @GET("movie/popular")
+    suspend fun getMovieListCoroutine(@Query("api_key") api_key: String = API_KEY): Response<MovieResponse>
 
-    @GET("authentication/token/new?api_key=a8800d6d40188783fd088998d7926c03")
-    suspend fun getToken(): Response<TokenResponse>
+    @GET("movie/{movie_id}")
+    fun getMovieByIdC(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey: String
+    ): Response<Movie>
 
-    @POST("authentication/token/validate_with_login?username={login}?password={pass}?request_token={request_token}?api_key=a8800d6d40188783fd088998d7926c03")
+    @GET("authentication/token/new")
+    suspend fun getToken(@Query("api_key") api_key: String = API_KEY): Response<Token>
+
+    @POST("authentication/token/validate_with_login")
     suspend fun validateToken(
-        @Path("username") username: String,
-        @Path("password") pass: String,
-        @Path("request_token") request_token: String
-    ): Response<TokenResponse>
+        @Query("api_key") apiKey: String = API_KEY,
+        @Body loginApprove: LoginApprove
+    ): Response<Token>
 
-    @POST("authentication/session/new?request_token={request_token}?api_key=a8800d6d40188783fd088998d7926c03")
-    suspend fun createSession(@Path("request_token") request_token: String): Response<Session>
+    @POST("authentication/session/new")
+    suspend fun createSession(
+        @Query("api_key") apiKey: String = API_KEY,
+        @Body token: Token
+    ): Response<Session>
 
-    @DELETE("authentication/session?session_id={sessionId}")
+    @DELETE("authentication/session?session_id={sessionId}?api_key=a8800d6d40188783fd088998d7926c03")
     suspend fun deleteSession(@Path("session_id") sessionId: String): Response<Boolean>
 
 }

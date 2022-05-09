@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.201953125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout-w936dp/activity_login.xml" value="0.190625" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/activity_main.xml" value="0.136" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/activity_movie_detail.xml" value="0.28892835997631733" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_dasboard.xml" value="0.24010416666666667" />

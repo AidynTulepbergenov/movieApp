@@ -1,5 +1,7 @@
-package com.example.mynavigation.view
+package com.example.mynavigation.view.activities
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,6 +19,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+//
+//        if (sharedPreferences.getString("SESSION_ID_KEY", null).isNullOrEmpty()){
+//            Intent(this, LoginActivity::class.java).also {
+//                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                startActivity(it)
+//            }
+//        }
+
+
 
         navController = findNavController(R.id.fragment)
 
