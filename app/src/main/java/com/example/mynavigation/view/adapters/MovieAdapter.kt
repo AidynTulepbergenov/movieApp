@@ -1,6 +1,5 @@
 package com.example.mynavigation.view.adapters
 
-
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,9 +11,9 @@ import com.example.mynavigation.R
 import com.example.mynavigation.databinding.MovieItemBinding
 import com.example.mynavigation.model.data.Movie
 
-class MovieAdapter(val itemClickListener: RecyclerViewItemClick? = null):
+class MovieAdapter(val itemClickListener: RecyclerViewItemClick? = null, val markFavItemClick: RecyclerViewFavItemClick? = null) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
         val binding: MovieItemBinding =
@@ -34,17 +33,22 @@ class MovieAdapter(val itemClickListener: RecyclerViewItemClick? = null):
     override fun getItemCount(): Int = differ.currentList.size
 
 
-
     //movie view holder to bind items with recycler view
-    inner class MovieViewHolder(private val binding: MovieItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun initContent(data: Movie? ){
+    inner class MovieViewHolder(private val binding: MovieItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun initContent(data: Movie?) {
             binding.data = data
+            binding.recyclerViewFavItemClick = markFavItemClick
             binding.recyclerViewItemClick = itemClickListener
             binding.executePendingBindings()
         }
     }
 
-    interface RecyclerViewItemClick{
+    interface RecyclerViewFavItemClick{
+        fun itemClick(item: Movie)
+    }
+
+    interface RecyclerViewItemClick {
         fun itemClick(item: Movie)
     }
 
@@ -65,11 +69,5 @@ class MovieAdapter(val itemClickListener: RecyclerViewItemClick? = null):
     fun submitList(list: List<Movie>?) {
         differ.submitList(list)
     }
-
-    fun clearAll() {
-        differ.submitList(null)
-    }
-
-
 
 }

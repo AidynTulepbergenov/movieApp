@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/drawable/ic_star_black.xml" value="0.1995" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/drawable/ic_star_full.xml" value="0.1995" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.201953125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout-w936dp/activity_login.xml" value="0.190625" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/activity_main.xml" value="0.136" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/activity_movie_detail.xml" value="0.28892835997631733" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_dasboard.xml" value="0.24010416666666667" />
@@ -13,10 +15,10 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_favourites.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_first.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_movie_catalog.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_movie_detail.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_movie_detail.xml" value="0.152" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_profile.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/fragment_second.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/movie_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/layout/movie_item.xml" value="0.5455950540958269" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyNavigation/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
       </map>
     </option>

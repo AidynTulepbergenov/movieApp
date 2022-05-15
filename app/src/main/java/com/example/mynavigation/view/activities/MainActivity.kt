@@ -29,13 +29,10 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-
-
         navController = findNavController(R.id.fragment)
 
         initBottomNav()
         initOnDestinationChangedListener()
-
     }
 
     private fun initOnDestinationChangedListener() {
@@ -43,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.movieCatalogFragment,
                 R.id.favouritesFragment,
-                R.id.profileFragment ->{
+                R.id.profileFragment -> {
                     binding.bottomNav.visibility = View.VISIBLE
                 }
                 R.id.movieDetail -> {

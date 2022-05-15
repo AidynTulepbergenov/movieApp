@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -33,10 +34,9 @@ class LoginActivity : AppCompatActivity() {
 
         initViewModel()
         checkLogin()
-
     }
 
-    private fun initViewModel(){
+    private fun initViewModel() {
         val viewModelProviderFactory = ViewModelProviderFactory(baseContext)
         viewModel =
             ViewModelProvider(
@@ -46,12 +46,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkLogin() {
+        binding.progressBar.visibility = View.VISIBLE
         if (!sharedPreferences?.getString("SESSION_ID_KEY", null).isNullOrEmpty()) {
             Intent(this, MainActivity::class.java).also {
                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(it)
+                binding.progressBar.visibility = View.GONE
             }
         } else {
+            binding.progressBar.visibility = View.GONE
             login()
         }
 
@@ -61,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val email: String = binding.etEmail.text.toString().trim()
             val pass = binding.etPassword.text.toString().trim()
+            binding.progressBar.visibility = View.VISIBLE
 
             val data = LoginApprove(
                 username = email,
@@ -76,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
                 }?.apply()
                 Intent(this, MainActivity::class.java).also {
                     it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    binding.progressBar.visibility = View.GONE
                     startActivity(it)
                 }
             })

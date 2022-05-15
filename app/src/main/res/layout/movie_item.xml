@@ -11,6 +11,9 @@
         <variable
             name="recyclerViewItemClick"
             type="com.example.mynavigation.view.adapters.MovieAdapter.RecyclerViewItemClick" />
+        <variable
+            name="recyclerViewFavItemClick"
+            type="com.example.mynavigation.view.adapters.MovieAdapter.RecyclerViewFavItemClick" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -31,10 +34,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@id/tv_poster"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="@{data.title}"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_toEndOf="@id/tv_poster"
                 tools:text="tv_title" />
 
             <TextView
@@ -57,8 +62,21 @@
                 android:layout_height="150dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
-                app:bindIconUrl="@{data.poster}"
-                 />
+                android:contentDescription="@string/poster"
+                app:bindIconUrl="@{data.poster}" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/markButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/yellow"
+                android:contentDescription="@string/favourites"
+                android:onClick="@{() -> recyclerViewFavItemClick.itemClick(data)}"
+                android:src="@drawable/ic_new_star_white"
+                app:backgroundTint="@color/yellow"
+                tools:ignore="RelativeOverlap" />
 
             <View
                 android:id="@+id/divider"

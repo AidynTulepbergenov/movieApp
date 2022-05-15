@@ -2,6 +2,7 @@ package com.example.mynavigation.model.network
 
 import com.example.mynavigation.model.MovieResponse
 import com.example.mynavigation.model.data.Movie
+import com.example.mynavigation.model.data.User
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -35,7 +36,35 @@ interface MovieApi {
         @Body token: Token
     ): Response<Session>
 
-    @DELETE("authentication/session?session_id={sessionId}?api_key=a8800d6d40188783fd088998d7926c03")
-    suspend fun deleteSession(@Path("session_id") sessionId: String): Response<Boolean>
+    @HTTP(method = "DELETE", path = "authentication/session", hasBody = true)
+    suspend fun deleteSession(
+        @Query("api_key") apiKey: String = API_KEY,
+        @Body session: Session
+    ): Response<Boolean>
 
+    @GET("account/{account_id}/favorite/movies")
+    suspend fun getFavList(
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("session_id") session_id: String = SESSION_ID,
+    ): Response<MovieResponse>
+
+    @POST("account/{account_id}/favorite")
+    suspend fun markFavorite(
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("session_id") session_id: String = SESSION_ID,
+        @Body favMovie: FavMovie
+    ): Response<FavResponse>
+
+    @GET("movie/{movie_id}/account_states")
+    suspend fun checkFavoriteMovie(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("session_id") session_id: String = SESSION_ID,
+    ): Response<AccountStates>
+
+    @GET("account")
+    suspend fun getAccountDetails(
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("session_id") session_id: String = SESSION_ID
+    ): Response<User>
 }
