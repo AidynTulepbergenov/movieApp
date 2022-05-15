@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mynavigation.R
 import com.example.mynavigation.databinding.ActivityLoginBinding
@@ -115,8 +116,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setProfile() {
-        val user = viewModel.setProfileDetails(sessionId)
-        binding.data = user
+        viewModel.setProfileDetails(sessionId)
+        viewModel.user.observe(viewLifecycleOwner) {
+            binding.data = it
+        }
     }
 
     private fun exitSession() {

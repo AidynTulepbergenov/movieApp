@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.MediaStore
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mynavigation.model.data.User
 import com.example.mynavigation.model.network.RetrofitService
@@ -16,10 +18,13 @@ import kotlinx.coroutines.launch
 import java.util.jar.Manifest
 import kotlin.coroutines.CoroutineContext
 
-class ProfileViewModel(context: Context) : ViewModel(), CoroutineScope {
+class ProfileViewModel : ViewModel(), CoroutineScope {
     private val job: Job = Job()
-    private val cont = context
     override val coroutineContext: CoroutineContext = Dispatchers.Main + job
+
+    private val _user = MutableLiveData<User>()
+    val user: LiveData<User>
+        get() = _user
 
     fun deleteSession(sessionId: String) {
         launch {
@@ -28,19 +33,13 @@ class ProfileViewModel(context: Context) : ViewModel(), CoroutineScope {
         }
     }
 
-    fun setProfileDetails(sessionId: String): User {
-        var user = User("Def","def")
+    fun setProfileDetails(sessionId: String) {
         launch {
             val response = RetrofitService.getMovieApi().getAccountDetails(session_id = sessionId)
             if (response.isSuccessful){
-                user = response.body()!!
+                _user.value = response.body()
             }
         }
-        return user
-    }
-
-    fun setImage() {
-
     }
 
     override fun onCleared() {
