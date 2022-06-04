@@ -6,14 +6,14 @@
     <data>
         <variable
             name="data"
-            type="com.example.mynavigation.model.data.Movie" />
+            type="com.example.mynavigation.domain.model.data.Movie" />
 
         <variable
             name="recyclerViewItemClick"
-            type="com.example.mynavigation.view.adapters.MovieAdapter.RecyclerViewItemClick" />
+            type="com.example.mynavigation.presentation.view.adapters.MovieAdapter.RecyclerViewItemClick" />
         <variable
             name="recyclerViewFavItemClick"
-            type="com.example.mynavigation.view.adapters.MovieAdapter.RecyclerViewFavItemClick" />
+            type="com.example.mynavigation.presentation.view.adapters.MovieAdapter.RecyclerViewFavItemClick" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -84,6 +84,7 @@
                 android:layout_height="1dp"
                 android:background="?android:attr/listDivider"
                 android:layout_below="@id/tv_poster"
+                android:layout_marginEnd="8dp"
                  />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

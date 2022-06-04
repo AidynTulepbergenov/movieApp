@@ -22,4 +22,8 @@
     <string name="quit">quit</string>
     <string name="profile_Photo">profilePhoto</string>
     <string name="photo">Photo</string>
+    <string name="title">Title</string>
+    <string name="n_message">Message</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="map">Show closest cinemas</string>
 </resources>
