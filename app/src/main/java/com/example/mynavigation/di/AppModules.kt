@@ -1,18 +1,16 @@
 package com.example.mynavigation.di
 
 import android.content.Context
-import androidx.databinding.MapChangeRegistry
 import com.example.mynavigation.data.db.MarkerDao
 import com.example.mynavigation.data.db.MovieDao
 import com.example.mynavigation.data.db.MovieDatabase
 import com.example.mynavigation.data.network.RetrofitService
 import com.example.mynavigation.domain.repositories.MapRepository
 import com.example.mynavigation.domain.repositories.MapRepositoryImpl
-import com.example.mynavigation.domain.repositories.MoviesRepositoryImpl
 import com.example.mynavigation.domain.repositories.MoviesRepository
+import com.example.mynavigation.domain.repositories.MoviesRepositoryImpl
 import com.example.mynavigation.domain.usecases.*
 import com.example.mynavigation.presentation.viewModel.*
-import com.google.android.material.shape.MarkerEdgeTreatment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -41,6 +39,8 @@ val useCaseModule = module {
     single { GetAccountDetailUseCase(repository = get()) }
     single { FillMarkerDBUseCase(repository = get()) }
     single { GetMarkersDBUseCase(repository = get()) }
+    single { GetSimilarMovieUseCase(repository = get()) }
+    single { GetMovieReviewUseCase(repository = get()) }
 }
 
 val viewModelModule = module {
@@ -56,6 +56,8 @@ val viewModelModule = module {
     viewModel { LoginViewModel(loginUseCase = get()) }
     viewModel { ProfileViewModel(logoutUseCase = get(), getAccountDetailUseCase = get()) }
     viewModel { MapsViewModel(fillMarkerDBUseCase = get(), getMarkersDBUseCase = get()) }
+    viewModel { SimilarMovieViewModel(markFavoriteUseCase = get(), getSimilarMovieUseCase = get()) }
+    viewModel { MovieReviewViewModel(getMovieReviewUseCase = get()) }
 }
 
 val appModules = networkModule + daoModule + repositoryModule + viewModelModule + useCaseModule

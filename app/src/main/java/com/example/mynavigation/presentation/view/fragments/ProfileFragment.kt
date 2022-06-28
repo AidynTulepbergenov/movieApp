@@ -2,7 +2,9 @@ package com.example.mynavigation.presentation.view.fragments
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -17,6 +19,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.mynavigation.R
 import com.example.mynavigation.databinding.FragmentProfileBinding
 import com.example.mynavigation.presentation.view.activities.LoginActivity
 import com.example.mynavigation.presentation.view.activities.MapsActivity
@@ -48,10 +51,10 @@ class ProfileFragment : Fragment() {
         getSessionId()
         setProfile()
         binding.exitButton.setOnClickListener {
-            exitSession()
+            showAlertDialog()
         }
 
-        binding.btnMap.setOnClickListener{
+        binding.btnMap.setOnClickListener {
             Intent(requireContext(), MapsActivity::class.java).also {
                 startActivity(it)
             }
@@ -97,8 +100,8 @@ class ProfileFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK){
-            if (requestCode == CAMERA_REQUEST_CODE){
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST_CODE) {
                 val image: Bitmap = data!!.extras!!.get("data") as Bitmap
                 binding.profilePhoto.setImageBitmap(image)
             }
@@ -130,5 +133,25 @@ class ProfileFragment : Fragment() {
             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(it)
         }
+    }
+
+    private fun showAlertDialog() {
+        val listener = DialogInterface.OnClickListener { dialog, which ->
+            when (which) {
+                DialogInterface.BUTTON_POSITIVE -> {
+                    exitSession()
+                    dialog.dismiss()
+                }
+                DialogInterface.BUTTON_NEGATIVE -> dialog.dismiss()
+            }
+        }
+        val dialog =
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.alert_title)
+                .setPositiveButton("Confirm", listener)
+                .setNegativeButton("Cancel", listener)
+                .setCancelable(false)
+
+        dialog.show()
     }
 }

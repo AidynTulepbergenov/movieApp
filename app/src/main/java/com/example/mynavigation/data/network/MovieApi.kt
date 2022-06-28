@@ -21,6 +21,19 @@ interface MovieApi {
         @Query("api_key") apiKey: String = API_KEY
     ): Response<Movie>
 
+    @GET("movie/{movie_id}/reviews")
+    suspend fun getMovieReview(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey: String = API_KEY
+    ): Response<ReviewResponse>
+
+    @GET("movie/{movie_id}/similar")
+    suspend fun getSimilarMovies(
+        @Path("movie_id") id: Int ,
+        @Query("api_key") apiKey: String = API_KEY
+    ): Response<MovieResponse>
+
+
     @GET("authentication/token/new")
     suspend fun getToken(@Query("api_key") api_key: String = API_KEY): Response<Token>
 

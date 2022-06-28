@@ -75,7 +75,7 @@ class FavouritesFragment : Fragment() {
         ) {
             val action = it.getContentIfNotHandled()?.let { it1 ->
                 Int
-                FavouritesFragmentDirections.actionFavouritesFragmentToMovieDetail(
+                FavouritesFragmentDirections.actionFavouritesFragmentToViewPagerFragment2(
                     movieId = it1
                 )
             }

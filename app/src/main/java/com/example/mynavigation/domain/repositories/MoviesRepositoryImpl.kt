@@ -4,11 +4,9 @@ import com.example.mynavigation.data.db.MovieDao
 import com.example.mynavigation.data.network.RetrofitService
 import com.example.mynavigation.domain.model.data.Movie
 import com.example.mynavigation.domain.model.responses.*
-import com.example.mynavigation.presentation.view.fragments.MovieCatalogFragment
 import com.example.mynavigation.presentation.viewModel.MovieCatalogViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class MoviesRepositoryImpl(
     private val database: MovieDao,
@@ -17,6 +15,14 @@ class MoviesRepositoryImpl(
 
     override suspend fun refreshMovies(): List<Movie> {
         return service.getMovieApi().getMovieListCoroutine().body()!!.movies
+    }
+
+    override suspend fun getSimilarMovies(movieId: Int): List<Movie> {
+        return service.getMovieApi().getSimilarMovies(movieId).body()!!.movies
+    }
+
+    override suspend fun getReviews(movieId: Int): List<Comment> {
+        return service.getMovieApi().getMovieReview(movieId).body()!!.results
     }
 
     override suspend fun getFavList(sessionId: String): List<Movie> {

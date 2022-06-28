@@ -7,6 +7,10 @@ interface MoviesRepository {
 
     suspend fun refreshMovies(): List<Movie>
 
+    suspend fun getSimilarMovies(movieId: Int): List<Movie>
+
+    suspend fun getReviews(movieId: Int): List<Comment>
+
     suspend fun getFavList(sessionId: String): List<Movie>
 
     suspend fun login(data: LoginApprove): Session

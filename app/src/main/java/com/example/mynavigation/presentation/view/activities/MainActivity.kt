@@ -35,10 +35,13 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.movieCatalogFragment,
                 R.id.favouritesFragment,
+                R.id.movieDetail,
+                R.id.movieReviewFragment,
+                R.id.similarMovieFragment,
                 R.id.profileFragment -> {
                     binding.bottomNav.visibility = View.VISIBLE
                 }
-                R.id.movieDetail -> {
+                R.id.viewPagerFragment2 -> {
                     binding.bottomNav.visibility = View.GONE
                 }
             }

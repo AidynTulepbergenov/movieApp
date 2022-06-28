@@ -1,5 +1,6 @@
 package com.example.mynavigation.presentation.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ import com.example.mynavigation.domain.model.ApiError
 import com.example.mynavigation.domain.model.Event
 import com.example.mynavigation.domain.model.data.Movie
 import com.example.mynavigation.domain.model.responses.AccountStates
-import com.example.mynavigation.domain.usecases.GetMovieListUseCase
+import com.example.mynavigation.domain.usecases.GetSimilarMovieUseCase
 import com.example.mynavigation.domain.usecases.MarkFavoriteUseCase
 import com.example.mynavigation.presentation.view.adapters.MovieAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -17,12 +18,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
-
-class MovieCatalogViewModel(
-    private val getMovieListUseCase: GetMovieListUseCase,
-    private val markFavoriteUseCase: MarkFavoriteUseCase
+class SimilarMovieViewModel(
+    private val markFavoriteUseCase: MarkFavoriteUseCase,
+    private val getSimilarMovieUseCase: GetSimilarMovieUseCase
 ) : ViewModel(),
     CoroutineScope {
+
+    private var _movieList = MutableLiveData<State>()
+    val movieList: LiveData<State>
+        get() = _movieList
+
     private var _isFavourite = MutableLiveData<Event<Boolean>>()
     val isFavourite: LiveData<Event<Boolean>>
         get() = _isFavourite
@@ -35,26 +40,21 @@ class MovieCatalogViewModel(
     val markFavourite: LiveData<Event<Int>>
         get() = _markFavorite
 
-    private var _movieList = MutableLiveData<State>()
-    val movieList: LiveData<State>
-        get() = _movieList
+    private var id: Int = 0
 
     private val job: Job = Job()
     override val coroutineContext: CoroutineContext = Dispatchers.Main + job
 
-    companion object {
-        var sessionID: String = ""
+    fun setArgs(id: Int) {
+        this.id = id
     }
 
-    fun setArgs(sessionId: String) {
-        sessionID = sessionId
-    }
 
     fun getMovies() {
         _movieList.value = State.ShowLoading
-        getMovieListUseCase.invoke(
+        getSimilarMovieUseCase.invoke(
             viewModelScope,
-            null,
+            id,
             object : UseCaseResponse<List<Movie>> {
                 override fun onSuccess(result: List<Movie>) {
                     _movieList.value = State.Result(result)
@@ -80,7 +80,7 @@ class MovieCatalogViewModel(
                 }
 
                 override fun onError(apiError: ApiError?) {
-                    //todo
+                    Log.d("is_Favourite", "Something went wrong")
                 }
             })
     }
@@ -113,4 +113,3 @@ class MovieCatalogViewModel(
         data class Result(val list: List<Movie>?) : State()
     }
 }
-

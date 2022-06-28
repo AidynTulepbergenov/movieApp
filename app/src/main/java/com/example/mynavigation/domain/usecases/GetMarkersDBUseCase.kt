@@ -14,7 +14,7 @@ class GetMarkersDBUseCase(private val repository: MapRepository) :
             try {
                 repository.getMarkers()
             } catch (e: Exception) {
-                listOf<Marker>()
+                listOf()
             }
         }
         return list

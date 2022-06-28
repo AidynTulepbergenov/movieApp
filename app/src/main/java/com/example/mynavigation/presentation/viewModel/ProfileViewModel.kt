@@ -1,11 +1,9 @@
 package com.example.mynavigation.presentation.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mynavigation.data.network.RetrofitService
 import com.example.mynavigation.domain.common.UseCaseResponse
 import com.example.mynavigation.domain.model.ApiError
 import com.example.mynavigation.domain.model.responses.User
@@ -14,7 +12,6 @@ import com.example.mynavigation.domain.usecases.LogoutUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class ProfileViewModel(
@@ -29,15 +26,17 @@ class ProfileViewModel(
         get() = _user
 
     fun deleteSession(sessionId: String) {
-        logoutUseCase.invoke(viewModelScope, sessionId, object : UseCaseResponse<Boolean> {
-            override fun onSuccess(result: Boolean) {
-                Log.d("Logout", result.toString())
+        logoutUseCase.invoke(viewModelScope, sessionId, object : UseCaseResponse<Any>{
+            override fun onSuccess(result: Any) {
+
             }
 
             override fun onError(apiError: ApiError?) {
-                TODO("Not yet implemented")
+
             }
-        })
+
+        } )
+
     }
 
     fun setProfileDetails(sessionId: String) {
