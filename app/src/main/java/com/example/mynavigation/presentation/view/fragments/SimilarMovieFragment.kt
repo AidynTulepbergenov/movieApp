@@ -75,7 +75,7 @@ class SimilarMovieFragment : Fragment() {
         ) {
             val action = it.getContentIfNotHandled()?.let { it1 ->
                 Int
-                SimilarMovieFragmentDirections.actionSimilarMovieFragmentToViewPagerFragment2(
+                ViewPagerFragmentDirections.actionViewPagerFragment2Self(
                     movieId = it1
                 )
             }

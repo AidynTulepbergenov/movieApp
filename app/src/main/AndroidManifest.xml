@@ -15,7 +15,13 @@
         android:theme="@style/Theme.MyNavigation">
         <activity
             android:name=".presentation.view.activities.SplashScreenActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -27,17 +33,11 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".presentation.view.activities.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity
             android:name=".presentation.view.activities.MainActivity"
-            android:exported="true" />
-
+            android:exported="false" />
         <service
             android:name=".MessageService"
             android:exported="false">

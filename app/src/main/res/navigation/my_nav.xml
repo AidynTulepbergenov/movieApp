@@ -43,15 +43,15 @@
         <argument
             android:name="movie_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_viewPagerFragment2_self"
+            app:destination="@id/viewPagerFragment2" />
     </fragment>
     <fragment
         android:id="@+id/similarMovieFragment"
         android:name="com.example.mynavigation.presentation.view.fragments.SimilarMovieFragment"
         android:label="fragment_similar_movie"
         tools:layout="@layout/fragment_similar_movie" >
-        <action
-            android:id="@+id/action_similarMovieFragment_to_viewPagerFragment2"
-            app:destination="@id/viewPagerFragment2" />
     </fragment>
     <fragment
         android:id="@+id/movieReviewFragment"

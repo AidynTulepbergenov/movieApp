@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
 
         observeViewModel()
-        checkLogin()
+        login()
     }
 
     private fun observeViewModel() {
@@ -58,19 +58,6 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun checkLogin() {
-        binding.progressBar.visibility = View.VISIBLE
-        if (!sharedPreferences?.getString("SESSION_ID_KEY", null).isNullOrEmpty()) {
-            Intent(this, MainActivity::class.java).also {
-                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(it)
-                binding.progressBar.visibility = View.GONE
-            }
-        } else {
-            binding.progressBar.visibility = View.GONE
-            login()
-        }
-    }
 
     private fun login() {
         binding.btnLogin.setOnClickListener {

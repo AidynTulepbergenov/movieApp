@@ -32,4 +32,5 @@
     <string name="similar">similar</string>
     <string name="similar_movies">Similar Movies</string>
     <string name="reviews">Reviews</string>
+    <string name="movie_app">Welcome to Movie App</string>
 </resources>
